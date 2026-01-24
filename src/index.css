@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+    --font-inter: "Inter";
+
+    --color-primary: #000;
+    --color-secondary-blue: #377DFF;
+    --color-secondary-green: #38cb89;
+    --color-secondary-orange: #FFab00;
+    --color-secondary-red: #FF5630;
+
+    --color-neutral-07: #141718;
+    --color-neutral-06: #232627;
+    --color-neutral-05: #343839 ;
+    --color-neutral-04: #6c7275 ;
+    --color-neutral-03: #e8ecef ;
+    --color-neutral-02: #f3f5f7 ;
+    --color-neutral-01: #fefefe ;
+}
+
+/* 3. Базовые стили */
+:root {
+    font-family: var(--font-inter), sans-serif;
+}
