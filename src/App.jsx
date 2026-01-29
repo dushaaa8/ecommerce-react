@@ -1,52 +1,63 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import NotificationBar from "./components/layout/NotificationBar.jsx";
 import NavigationBar from "./components/layout/NavigationBar.jsx";
 import ShopPlaceholder from "./components/layout/ShopPlaceholder.jsx";
-import ProductCard from "./components/layout/ProductCard.jsx";
+import {useFetchProducts} from "./hooks/useFetch.js";
+import {useNotificationTimer} from "./hooks/useNotificationTimer.js";
+import ProductsList from "./components/layout/ProductsList.jsx";
+import Newsletter from "./components/layout/Newsletter.jsx";
+import Footer from "./components/layout/Footer.jsx";
+import SelectFilter from "./components/ui/SelectFilter.jsx";
+import FiltersSection from "./components/layout/FiltersSection.jsx";
 
 function App() {
 
     const [isNotification, changeNotificationVisibility] = useState(true)
-    const [product, setProduct] = useState(
-        {
-            "id": 1,
-            "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-            "price": 109.95,
-            "description": "Your perfect pack for everyday use and walks in the forest.",
-            "category": "men's clothing",
-            "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-            "rating": {
-                "rate": 3.9,
-                "count": 120
+    const { data: products, isLoading, error } = useFetchProducts();
+    useNotificationTimer(isNotification,changeNotificationVisibility)
+
+    const [activeFilters, setActiveFilters] = useState({
+        category: "All Categories",
+        price: "All Price"
+    })
+
+    const filteredProducts = products.filter(product => {
+        const categoryMatch =
+            activeFilters.category === 'All Categories' ||
+            product.category === activeFilters.category;
+
+        let priceMatch = true;
+        if (activeFilters.price !== 'All Price') {
+            const clearFilters = activeFilters.price.replace(/[^\d\.-]/g, '')
+            console.log(clearFilters)
+            const [min, max] = clearFilters.split('-',).map(Number);
+
+            if (max) {
+                priceMatch = product.price >= min && product.price <= max;
+            } else {
+                priceMatch = product.price >= min;
             }
         }
-    )
 
-    useEffect(() => {
-        let timer;
-        if (!isNotification) {
-            timer = setTimeout(() => {
-                changeNotificationVisibility(true);
-            }, 35000);
-        }
+        return categoryMatch && priceMatch;
+    });
 
-        return () => clearTimeout(timer);
-    }, [isNotification]);
+    if(error) return <p>Something wrong with fetching data!</p>
 
-  return (
-      <div className="flex flex-col items-center">
-        <NotificationBar value={30} isNotification={isNotification} changeNotificationVisibility={changeNotificationVisibility}/>
-        <NavigationBar/>
-        <ShopPlaceholder/>
-        <section className="grid grid-cols-4 w-[1120px] gap-[24px] py-10">
-            <ProductCard product={product}/>
-            <ProductCard product={product}/>
-            <ProductCard product={product}/>
-            <ProductCard product={product}/>
-            <ProductCard product={product}/>
-            <ProductCard product={product}/>
-            <ProductCard product={product}/>
-        </section>
+    return (
+        <div className="flex flex-col items-center">
+            <NotificationBar value={30} isNotification={isNotification}
+                             changeNotificationVisibility={changeNotificationVisibility}/>
+            <NavigationBar/>
+            <ShopPlaceholder/>
+            <FiltersSection activeFilters={activeFilters} setActiveFilters={setActiveFilters}/>
+            {filteredProducts.length
+                ?<ProductsList products={filteredProducts} isLoading={isLoading}/>
+                :<p className="py-10">Items not found</p>
+            }
+
+            <Newsletter/>
+            <Footer/>
       </div>
   )
 }

@@ -4,9 +4,9 @@ import heroBg from '../../assets/images/Placeholder.png';
 const ShopPlaceholder = () => {
     return (
         <section style={{ backgroundImage: `url(${heroBg})` }}
-            className="bg-(--background-hero) w-[1120px] h-[392px] top-[100px] flex flex-col items-center justify-center gap-[24px]">
+            className=" w-280 h-98 top-25 flex flex-col items-center justify-center gap-6 mb-15">
             <nav className="text-[14px] font-medium">
-                <a href="#" className="text-neutral-04">Home > </a>
+                <a href="#" className="text-neutral-04">Home {"> "}</a>
                 <a href="#">Shop</a>
             </nav>
             <h1 className="text-[54px] font-medium">Shop Page</h1>

@@ -10,10 +10,10 @@ const NotificationBar = ({value,isNotification, changeNotificationVisibility}) =
     }
     if (!isNotification) return null;
     return (
-         <section className="h-[40px] w-full bg-neutral-02 flex items-center justify-center text-neutral-07 font-semibold sticky">
-            <div className="flex gap-[12px] text-[14px]"><DiscountIcon/>
+         <section className="h-10 w-full bg-neutral-02 flex items-center justify-center text-neutral-07 font-semibold sticky">
+            <div className="flex gap-3 text-[14px]"><DiscountIcon/>
                 <span>{value}% off storewide — Limited time! </span>
-                <a className="flex gap-[4px] items-center text-secondary-blue border-b cursor-pointer hover:scale-105">Shop
+                <a className="flex gap-1 items-center text-secondary-blue border-b cursor-pointer hover:scale-105">Shop
                     Now <BlueArrowIcon/></a>
             </div>
             <button className="cursor-pointer absolute right-4 transition-all ease-in-out duration-200 hover:rotate-90" onClick={onClickCloseNotification}><CloseIcon/></button>
