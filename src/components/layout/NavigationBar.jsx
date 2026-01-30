@@ -2,7 +2,7 @@ import React from 'react';
 import CartButtonIcon from "../../assets/icons/shopping-bag.svg?react"
 import UserIcon from "../../assets/icons/user-circle.svg?react"
 import SearchButtonIcon from "../../assets/icons/search.svg?react"
-
+import {Link} from "react-router-dom";
 
 const NavigationBar = () => {
     return (
@@ -10,7 +10,7 @@ const NavigationBar = () => {
             <div className="font-medium text-[24px]">3legant.</div>
             <div className="flex gap-10 text-[14px] font-medium text-neutral-04">
                 <a href="#">Home</a>
-                <a href="#" className="text-neutral-07">Shop</a>
+                <Link to={"/catalog"} className="text-neutral-07">Shop</Link>
                 <a href="#">Product</a>
                 <a href="#">Contact Us</a>
             </div>

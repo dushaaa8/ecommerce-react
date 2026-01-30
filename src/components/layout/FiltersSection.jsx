@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import SelectFilter from "../ui/SelectFilter.jsx";
 
 const FiltersSection = ({setActiveFilters}) =>{
