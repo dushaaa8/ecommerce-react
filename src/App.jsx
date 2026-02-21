@@ -7,6 +7,7 @@ import Footer from "./components/layout/Footer.jsx";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import CatalogPage from "./pages/CatalogPage.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
+import CartPage from "./pages/CartPage.jsx";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Navigate to="/catalog" replace />} />
                     <Route path="/catalog" element={<CatalogPage/>} />
+                    <Route path="/cart" element={<CartPage/>} />
                     <Route path="/catalog/:id" element={<ProductDetail />} />
                 </Routes>
                 <Newsletter/>
