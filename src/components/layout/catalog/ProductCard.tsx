@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import Rating from "../ui/Rating.jsx";
-import useCartStorage from "../../store/useCartStorage.js";
+import Rating from "../../ui/Rating";
+import useCartStorage from "../../../store/useCartStorage";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product}:ProductProps) => {
     const addToCart = useCartStorage((state) => state.addToCart);
     return (
         <Link to={`/catalog/${product.id}`} className="group flex flex-col gap-3 cursor-pointer h-full">

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CheckoutBlock = ({ cart, totalCost }) => {
+const CheckoutBlock = ({ cart, totalCost }:CheckoutBlockProps) => {
   return (
     <div className="bg-neutral-01 rounded-lg shadow-sm p-6 sticky top-4">
       <h2 className="text-xl font-semibold mb-6">Order Summary</h2>

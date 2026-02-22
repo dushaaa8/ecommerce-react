@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-export const useNotificationTimer = (isVisible, setVisibility, delay = 35000) => {
+export const useNotificationTimer = ({isVisible, setVisibility, delay = 35000}:UseNotificationTimer) => {
     useEffect(() => {
-        let timer;
+        let timer: number;
         if (!isVisible) {
             timer = setTimeout(() => {
                 setVisibility(true);

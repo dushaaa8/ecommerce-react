@@ -3,10 +3,10 @@ import CartButtonIcon from "../../assets/icons/shopping-bag.svg?react"
 import UserIcon from "../../assets/icons/user-circle.svg?react"
 import SearchButtonIcon from "../../assets/icons/search.svg?react"
 import {Link} from "react-router-dom";
-import useCartStorage from "../../store/useCartStorage.js";
+import useCartStorage from "../../store/useCartStorage";
 
 const NavigationBar = () => {
-    const count = useCartStorage((state) => state.cart.length);
+    const count: number = useCartStorage((state) => state.cart.length);
     return (
         <nav className="w-280 h-15 flex justify-between items-center bg-white">
             <div className="font-medium text-[24px]">3legant.</div>

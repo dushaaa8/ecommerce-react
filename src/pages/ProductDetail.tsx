@@ -1,12 +1,12 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
-import {useFetchProducts} from "../hooks/useFetch.js";
-import Rating from "../components/ui/Rating.jsx";
-import Breadcrumbs from "../components/layout/Breadcrumbs.jsx";
+import {useFetchProducts} from "../hooks/useFetch";
+import Rating from "../components/ui/Rating";
+import Breadcrumbs from "../components/layout/Breadcrumbs";
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const { data: product, isLoading } = useFetchProducts(id)
+    const { data: product, isLoading } = useFetchProducts(id) as UseFetch<Product>;
 
     if (isLoading) return <div className="text-center py-20">Loading product...</div>;
     if (!product) return <div className="text-center py-20">Product not found</div>;

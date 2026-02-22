@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 
-const Breadcrumbs = ({classes}) => {
+const Breadcrumbs = ({classes}:Breadcrumbs) => {
     const location = useLocation();
-    const pathnames = location.pathname.split('/').filter((x) => x);
+    const pathnames:string[] = location.pathname.split('/').filter((x) => x);
 
     return (
         <nav className={`flex items-center gap-2 text-sm py-4 ${classes}`}>
@@ -11,8 +11,8 @@ const Breadcrumbs = ({classes}) => {
             </Link>
 
             {pathnames.map((value, index) => {
-                const last = index === pathnames.length - 1;
-                const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+                const last:boolean = index === pathnames.length - 1;
+                const to:string = `/${pathnames.slice(0, index + 1).join('/')}`;
 
                 return (
                     <div key={to} className="flex items-center gap-2">

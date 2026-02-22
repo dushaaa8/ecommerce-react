@@ -4,8 +4,8 @@ import BlueArrowIcon from '../../assets/icons/arrow-right.svg?react'
 import CloseIcon from '../../assets/icons/close.svg?react'
 
 
-const NotificationBar = ({value,isNotification, changeNotificationVisibility}) => {
-    const onClickCloseNotification = () => {
+const NotificationBar = ({value,isNotification, changeNotificationVisibility}:NotificationBarProps) => {
+    const onClickCloseNotification = ():void => {
         changeNotificationVisibility(false)
     }
     if (!isNotification) return null;

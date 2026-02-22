@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectFilter = ({name, options, value, onChange}) => {
+const SelectFilter = ({name, options, value, onChange}:SelectFilterProps) => {
     return (
         <div className="relative w-[256px]">
             <label className="block text-xs font-bold uppercase text-neutral-04 mb-2">

@@ -1,8 +1,9 @@
-import SelectFilter from "../ui/SelectFilter.jsx";
+import SelectFilter from "../../ui/SelectFilter";
+import {Filters, FilterSectionProps} from "../../../types/FilterSectionProps";
 
-const FiltersSection = ({setActiveFilters}) =>{
+const FiltersSection = ({setActiveFilters}:FilterSectionProps) =>{
 
-    const handleFilterChange = (filterName,value) =>{
+    const handleFilterChange = (filterName: keyof Filters,value: string) =>{
         setActiveFilters( prev =>({
             ...prev,
             [filterName]:value

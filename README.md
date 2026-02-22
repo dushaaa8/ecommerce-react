@@ -4,4 +4,5 @@
 
 ### - useEffect for fetching data from API;
 ### - React-Router-DOM library for navigating 
-### - Context for working with states.
+### - Context(or state manager) for working with states.
+## Then - remove project from javascript to typescript!

@@ -1,6 +1,10 @@
 import React from "react";
 
-const CartItemRow = ({ item, onQuantityChange, onRemove }) => {
+const CartItemRow = ({item, onQuantityChange, onRemove}: {
+      item: CartList['cart'][number];
+      onQuantityChange: CartList['onQuantityChange'];
+      onRemove: CartList['onRemove'];
+    }) => {
   const handleDecrement = () => onQuantityChange(item.id, item.quantity - 1);
   const handleIncrement = () => onQuantityChange(item.id, item.quantity + 1);
 
@@ -11,7 +15,7 @@ const CartItemRow = ({ item, onQuantityChange, onRemove }) => {
           <img
             src={item.image}
             alt={item.title}
-            className="w-20 h-20 object-contain rounded-lg"
+            className="w-20 h-20 object-contain bg-neutral-02"
           />
           <div>
             <h3 className="font-medium text-neutral-07 line-clamp-2">{item.title}</h3>

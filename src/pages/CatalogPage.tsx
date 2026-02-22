@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
-import ProductsList from "../components/layout/ProductsList.jsx";
-import ShopPlaceholder from "../components/layout/ShopPlaceholder.jsx";
-import FiltersSection from "../components/layout/FiltersSection.jsx";
-import {useFetchProducts} from "../hooks/useFetch.js";
+import ProductsList from "../components/layout/catalog/ProductsList";
+import ShopPlaceholder from "../components/layout/ShopPlaceholder";
+import FiltersSection from "../components/layout/catalog/FiltersSection";
+import {useFetchProducts} from "../hooks/useFetch";
+import {Filters} from "../types/FilterSectionProps";
 
 const CatalogPage = () => {
-    const { data: products, isLoading, error } = useFetchProducts();
-    const [activeFilters, setActiveFilters] = useState({
+    const { data: products, isLoading, error } = useFetchProducts() as UseFetch<Product[]>;
+    const [activeFilters, setActiveFilters] = useState<Filters>({
         category: "All Categories",
         price: "All Price"
     })
+    const currentProducts = Array.isArray(products) ? products : [];
 
-
-    const filteredProducts = products.filter(product => {
+    const filteredProducts = currentProducts.filter((product) => {
         const categoryMatch =
             activeFilters.category === 'All Categories' ||
             product.category === activeFilters.category;
@@ -37,7 +38,7 @@ const CatalogPage = () => {
     return (
         <>
             <ShopPlaceholder/>
-            <FiltersSection activeFilters={activeFilters} setActiveFilters={setActiveFilters}/>
+            <FiltersSection setActiveFilters={setActiveFilters}/>
             {filteredProducts.length
                 ?<ProductsList products={filteredProducts} isLoading={isLoading}/>
                 :<p className="py-10">Items not found</p>

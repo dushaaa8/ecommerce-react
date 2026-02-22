@@ -1,15 +1,15 @@
 import React from 'react';
-import useCartStorage from "../store/useCartStorage.js";
+import useCartStorage from "../store/useCartStorage";
 import { Link } from "react-router-dom";
-import CartTable from "../components/layout/CartTable.jsx";
-import CheckoutBlock from "../components/layout/CheckoutBlock.jsx";
+import CartTable from "../components/layout/cart/CartTable";
+import CheckoutBlock from "../components/layout/cart/CheckoutBlock";
 
 const CartPage = () => {
   const cart = useCartStorage((state) => state.cart);
   const updateQuantity = useCartStorage((state) => state.updateQuantity);
   const removeFromCart = useCartStorage((state) => state.removeFromCart);
 
-  const handleQuantityChange = (id, newQuantity) => {
+  const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity === 0) {
       removeFromCart(id);
     } else {

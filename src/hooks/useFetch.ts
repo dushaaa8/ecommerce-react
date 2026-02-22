@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export const useFetchProducts = (id = null) => {
-    const [data, setData] = useState(id ? null : []);
+export const useFetchProducts = (id:number | string | null = null): UseFetch<Product | Product[]> => {
+    const [data, setData] = useState<Product | Product[] | null>(id ? null : []);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,17 +17,17 @@ export const useFetchProducts = (id = null) => {
                 const response = await fetch(url);
                 if (!response.ok) throw new Error("Error loading data!");
 
-                const result = await response.json();
+                const result: Product | Product[] = await response.json();
                 setData(result);
             } catch (err) {
-                setError(err.message);
+                if (err instanceof Error) setError(err.message);
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchData();
-    }, [id]); // Перезапускаем, если изменился id
+    }, [id]);
 
     return { data, isLoading, error };
 };

@@ -2,7 +2,7 @@ import {create} from "zustand";
 import {persist} from "zustand/middleware";
 
 
-const useCartStorage = create(
+const useCartStorage = create<CartStorage>()(
     persist(
         (set, get) => ({
             cart: [],

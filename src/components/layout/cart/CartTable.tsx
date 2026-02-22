@@ -1,7 +1,7 @@
 import React from "react";
-import CartItemsList from "./CartItemsList.jsx";
+import CartItemsList from "./CartItemsList";
 
-const CartTable = ({ cart, onQuantityChange, onRemove }) => {
+const CartTable = ({ cart, onQuantityChange, onRemove }:CartList) => {
   return (
     <div className="bg-neutral-01 rounded-lg shadow-sm overflow-hidden">
       <table className="w-full">
